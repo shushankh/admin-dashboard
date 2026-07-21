@@ -1,4 +1,4 @@
 function Notfound() {
-  return <div>Notfound</div>;
+  return <div>404 - Page Not Found</div>;
 }
 export default Notfound;
