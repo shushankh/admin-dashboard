@@ -5,16 +5,32 @@ import {
   ShoppingCartOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu } from "antd";
-import { useNavigate } from "react-router-dom";
+import { useLocation, NavLink } from "react-router-dom";
 
 const { Sider } = Layout;
 function Sidebar() {
-  const navigate = useNavigate();
+  const location = useLocation();
   const menuItems = [
-    { key: "/", label: "Dashboard", icon: <DashboardOutlined /> },
-    { key: "/users", label: "Users", icon: <UserOutlined /> },
-    { key: "/products", label: "Products", icon: <ShoppingOutlined /> },
-    { key: "/orders", label: "Orders", icon: <ShoppingCartOutlined /> },
+    {
+      key: "/",
+      label: <NavLink to="/">Dashboard</NavLink>,
+      icon: <DashboardOutlined />,
+    },
+    {
+      key: "/users",
+      label: <NavLink to="/users">Users</NavLink>,
+      icon: <UserOutlined />,
+    },
+    {
+      key: "/products",
+      label: <NavLink to="/products">Products</NavLink>,
+      icon: <ShoppingOutlined />,
+    },
+    {
+      key: "/orders",
+      label: <NavLink to="/orders">Orders</NavLink>,
+      icon: <ShoppingCartOutlined />,
+    },
   ];
   return (
     <Sider>
@@ -31,7 +47,7 @@ function Sidebar() {
       <Menu
         theme="dark"
         mode="inline"
-        onClick={({ key }) => navigate(key)}
+        selectedKeys={[location.pathname]}
         items={menuItems}
       />
     </Sider>
