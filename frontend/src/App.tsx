@@ -1,5 +1,10 @@
 function App() {
-  return <h1>Admin Dashboard</h1>;
+  return (
+    <>
+      <h1>Admin Dashboard</h1>
+      <p>Welcome to the Admin Dashboard</p>
+    </>
+  );
 }
 
 export default App;
