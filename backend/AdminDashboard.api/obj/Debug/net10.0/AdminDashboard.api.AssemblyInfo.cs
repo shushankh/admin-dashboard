@@ -10,10 +10,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("0fdc06e8-222b-4865-87d1-419b3b9ab06b")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("AdminDashboard.api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fa633e3942c67d646e5c4bc40bd0187c1d0df91f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+80839f9fbd1f530128f36c1e7b004b6efcaaeb7b")]
 [assembly: System.Reflection.AssemblyProductAttribute("AdminDashboard.api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AdminDashboard.api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
