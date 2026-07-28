@@ -1,4 +1,4 @@
-import { Button, Space, Tag, Table } from "antd";
+import { Popconfirm, Button, Space, Tag, Table } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import type { User } from "../../../types/user";
 interface UserTableProps {
@@ -42,9 +42,16 @@ function UserTable({ users, onEdit, onDelete }: UserTableProps) {
             Edit
           </Button>
 
-          <Button danger onClick={() => onDelete(record.id)}>
-            Delete
-          </Button>
+          <Popconfirm
+            title="Delete user"
+            description={`Are you sure you want to delete ${record.name}?`}
+            onConfirm={() => onDelete(record.id)}
+            okText="Delete"
+            cancelText="Cancel"
+            okButtonProps={{ danger: true }}
+          >
+            <Button danger>Delete</Button>
+          </Popconfirm>
         </Space>
       ),
     },

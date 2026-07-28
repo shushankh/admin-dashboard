@@ -1,42 +1,108 @@
 import { Button, Input, Space } from "antd";
-
 import { useState } from "react";
 
 import type { User } from "../../types/user";
-
-import { mockUsers } from "../../features/users/mockUsers";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import UserTable from "../../features/users/components/UserTable";
-
 import UserFormModal from "../../features/users/components/UserFormModal";
 
-function Users() {
-  const [users, setUsers] = useState<User[]>(mockUsers);
+import {
+  createUser,
+  getUsers,
+  deleteUser,
+  updateUser,
+} from "../../api/usersApi";
 
+function Users() {
+  // Get users from backend
+  const {
+    data: users = [],
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["users"],
+    queryFn: getUsers,
+  });
+
+  const queryClient = useQueryClient();
+
+  // Create user mutation
+  const createUserMutation = useMutation({
+    mutationFn: createUser,
+
+    onSuccess: () => {
+      // Tell TanStack Query to fetch users again
+      queryClient.invalidateQueries({
+        queryKey: ["users"],
+      });
+
+      // Close modal
+      setEditingUser(null);
+      setIsModalOpen(false);
+    },
+  });
+  const deleteUserMutation = useMutation({
+    mutationFn: deleteUser,
+
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["users"],
+      });
+    },
+  });
+  const updateUserMutation = useMutation({
+    mutationFn: ({
+      id,
+      values,
+    }: {
+      id: number;
+      values: {
+        name: string;
+        email: string;
+        role: User["role"];
+        status: User["status"];
+      };
+    }) => updateUser(id, values),
+
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["users"],
+      });
+
+      setEditingUser(null);
+      setIsModalOpen(false);
+    },
+  });
   const [search, setSearch] = useState("");
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [editingUser, setEditingUser] = useState<User | null>(null);
 
+  // Search users
   const filteredUsers = users.filter((user) =>
     user.name.toLowerCase().includes(search.toLowerCase()),
   );
 
+  // Open modal for adding
   const handleOpenAddModal = () => {
     setEditingUser(null);
     setIsModalOpen(true);
   };
 
+  // Open modal for editing
   const handleEditUser = (user: User) => {
     setEditingUser(user);
     setIsModalOpen(true);
   };
 
+  // Delete -
   const handleDeleteUser = (id: number) => {
-    setUsers((currentUsers) => currentUsers.filter((user) => user.id !== id));
+    deleteUserMutation.mutate(id);
   };
 
+  // Submit add/edit form
   const handleSubmitUser = (values: {
     name: string;
     email: string;
@@ -44,34 +110,28 @@ function Users() {
     status: User["status"];
   }) => {
     if (editingUser) {
-      setUsers((currentUsers) =>
-        currentUsers.map((user) =>
-          user.id === editingUser.id
-            ? {
-                ...user,
-                ...values,
-              }
-            : user,
-        ),
-      );
+      updateUserMutation.mutate({
+        id: editingUser.id,
+        values,
+      });
     } else {
-      const newUser: User = {
-        id: Date.now(),
-        ...values,
-        createdAt: new Date().toISOString(),
-      };
-
-      setUsers((currentUsers) => [...currentUsers, newUser]);
+      createUserMutation.mutate(values);
     }
-
-    setEditingUser(null);
-    setIsModalOpen(false);
   };
 
+  // Close modal
   const handleCloseModal = () => {
     setEditingUser(null);
     setIsModalOpen(false);
   };
+
+  if (isLoading) {
+    return <div>Loading users...</div>;
+  }
+
+  if (isError) {
+    return <div>Failed to load users.</div>;
+  }
 
   return (
     <div>
