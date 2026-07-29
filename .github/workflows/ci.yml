@@ -29,6 +29,10 @@ jobs:
         working-directory: backend/AdminDashboard.api
         run: dotnet build --no-restore
 
+      - name: Run backend tests
+        working-directory: backend/AdminDashboard.api.Tests
+        run: dotnet test --no-restore
+
   build-frontend:
     runs-on: ubuntu-latest
 
