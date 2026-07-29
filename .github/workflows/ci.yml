@@ -29,6 +29,22 @@ jobs:
         working-directory: backend/AdminDashboard.api
         run: dotnet build --no-restore
 
+  test-backend:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Restore dependencies
+        working-directory: backend/AdminDashboard.api.Tests
+        run: dotnet restore
+
       - name: Run backend tests
         working-directory: backend/AdminDashboard.api.Tests
         run: dotnet test --no-restore
