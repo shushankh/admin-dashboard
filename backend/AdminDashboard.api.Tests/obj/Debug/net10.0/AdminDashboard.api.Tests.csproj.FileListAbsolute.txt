@@ -14,13 +14,11 @@ D:\admin-dashboard\backend\AdminDashboard.api.Tests\bin\Debug\net10.0\AdminDashb
 D:\admin-dashboard\backend\AdminDashboard.api.Tests\bin\Debug\net10.0\AdminDashboard.api.Tests.runtimeconfig.json
 D:\admin-dashboard\backend\AdminDashboard.api.Tests\bin\Debug\net10.0\AdminDashboard.api.Tests.dll
 D:\admin-dashboard\backend\AdminDashboard.api.Tests\bin\Debug\net10.0\AdminDashboard.api.Tests.pdb
-D:\admin-dashboard\backend\AdminDashboard.api.Tests\bin\Debug\net10.0\Microsoft.AspNetCore.OpenApi.dll
 D:\admin-dashboard\backend\AdminDashboard.api.Tests\bin\Debug\net10.0\Microsoft.VisualStudio.CodeCoverage.Shim.dll
 D:\admin-dashboard\backend\AdminDashboard.api.Tests\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.dll
 D:\admin-dashboard\backend\AdminDashboard.api.Tests\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.Abstractions.dll
 D:\admin-dashboard\backend\AdminDashboard.api.Tests\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.InMemory.dll
 D:\admin-dashboard\backend\AdminDashboard.api.Tests\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.Relational.dll
-D:\admin-dashboard\backend\AdminDashboard.api.Tests\bin\Debug\net10.0\Microsoft.OpenApi.dll
 D:\admin-dashboard\backend\AdminDashboard.api.Tests\bin\Debug\net10.0\Microsoft.TestPlatform.CoreUtilities.dll
 D:\admin-dashboard\backend\AdminDashboard.api.Tests\bin\Debug\net10.0\Microsoft.TestPlatform.PlatformAbstractions.dll
 D:\admin-dashboard\backend\AdminDashboard.api.Tests\bin\Debug\net10.0\Microsoft.VisualStudio.TestPlatform.ObjectModel.dll
