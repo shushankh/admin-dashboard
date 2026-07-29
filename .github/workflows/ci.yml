@@ -30,20 +30,25 @@ jobs:
         run: dotnet build --no-restore
 
   build-frontend:
-    runs-on: ubuntu-latest
+  runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+  defaults:
+    run:
+      working-directory: frontend
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: yarn
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
 
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 22
+        cache: yarn
+        cache-dependency-path: frontend/yarn.lock
 
-      - name: Build frontend
-        run: yarn build
+    - name: Install dependencies
+      run: yarn install --frozen-lockfile
+
+    - name: Build frontend
+      run: yarn build
